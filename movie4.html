@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>에브리씽 에브리웨어 올앳원스</title>
+  <style>
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background-color: #e5c9f5;
+      margin: 0;
+      padding: 40px;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .left, .right {
+      flex: 1 1 400px;
+    }
+    .box {
+      background: #ffffffd8;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+    .left img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      display: block;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+    textarea, input[type="text"], select {
+      width: 100%;
+      font-size: 14px;
+      padding: 10px;
+      margin-top: 10px;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+    .recommend-box {
+      background-color: #fff8dc;
+      padding: 15px;
+      margin-top: 20px;
+      border-left: 5px solid #ff9800;
+      border-radius: 8px;
+    }
+    .back {
+      text-align: center;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left box">
+      <h1 style="text-align: center;">에브리씽 에브리웨어 올앳원스</h1>
+      <img style="display: block; margin: 0 auto; max-width: 300px; border-radius: 8px; margin-bottom: 20px;" src="images/eea.png" alt="에브리씽 에브리웨어 올앳원스 포스터">
+      <p><strong>장르:</strong> SF, 액션</p>
+      <p><strong>감독:</strong> 다니엘 콴, 다니엘 쉐이너트</p>
+      <p><strong>출연:</strong> 양자경, 키 호이 콴</p>
+      <p><strong>개봉:</strong> 2022년</p>
+      <p><strong>줄거리:</strong> 멀티버스 속 평범한 주인공이 모든 우주의 운명을 짊어지게 되는 이야기.</p>
+      <p><strong>나의 별점:</strong> ⭐️⭐️⭐️⭐️⭐️</p>
+      <div class="recommend-box">
+        💡 <strong>비슷한 분위기의 영화</strong><br>
+        닥터 스트레인지, 인셉션, 더 원
+      </div>
+    </div>
+    <div class="right box">
+      <h2>감상평 남기기 ✍️</h2>
+      <form>
+        <label for="nickname">닉네임:</label>
+        <input type="text" id="nickname" name="nickname">
+        <label for="rating">별점:</label>
+        <select id="rating" name="rating">
+          <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+          <option value="4">⭐️⭐️⭐️⭐️☆</option>
+          <option value="3">⭐️⭐️⭐️☆☆</option>
+          <option value="2">⭐️⭐️☆☆☆</option>
+          <option value="1">⭐️☆☆☆☆</option>
+        </select>
+        <label for="review">감상평:</label>
+        <textarea id="review" name="review" placeholder="이 영화 어땠나요?"></textarea>
+        <button type="submit">등록</button>
+      </form>
+    </div>
+  </div>
+  <div class="back">
+    <a href="index.html" style="text-decoration: none; color: #333;">← 메인 페이지로 돌아가기</a>
+  </div>
+</body>
+</html>

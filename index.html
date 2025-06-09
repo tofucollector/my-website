@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>채원이의 영화관</title>
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <style>
+    a {
+      color: black;
+      text-decoration: none;
+    }
+    a:hover {
+      color: darkred;
+    }
+
+    p {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background-color: #c0a8b9;
+      padding: 40px;
+    }
+
+    .movie-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 기본 4개 */
+      gap: 30px;
+      justify-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .movie-item {
+      text-align: center;
+    }
+
+    .movie-item img {
+      width: 200px;
+      height: 300px;
+      object-fit: cover;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .movie-item img:hover {
+      transform: scale(1.05);
+    }
+
+    /* ✅ 반응형 설정 */
+    @media screen and (max-width: 1024px) {
+      .movie-list {
+        grid-template-columns: repeat(2, 1fr); /* 태블릿: 2개씩 */
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      .movie-list {
+        grid-template-columns: 1fr; /* 모바일: 1개씩 */
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1 style="text-align: center; color: #333;">채원이의 영화관🎬</h1>
+  <nav style="text-align: center; margin-bottom: 40px;">
+    <a href="index.html" style="margin: 0 10px; padding: 10px 20px; background-color: #e4d0e2; border-radius: 20px; font-weight: bold; color: black; text-decoration: none;">🎞 전체 영화</a>
+    <a href="monthly.html" style="margin: 0 10px; padding: 10px 20px; background-color: #f6cde3; border-radius: 20px; font-weight: bold; color: black; text-decoration: none;">🌟 이달의 추천 영화</a>
+  </nav>
+
+  <!-- 검색창 -->
+  <form style="text-align: center; margin-bottom: 30px; " onsubmit="event.preventDefault(); searchMovies();">
+    <input
+      type="text"
+      id="search"
+      name="search"
+      oninput="searchMovies()"
+      placeholder="영화 제목 입력"
+      style="padding: 8px; width: 250px; font-size: 16px; margin: 0 10px; padding: 10px 20px; background-color: #ffffff; border-radius: 20px; "
+    >
+    <button type="submit" style="padding: 8px 16px; font-size: 16px;">검색</button>
+  </form>
+
+  <!-- 정렬 버튼 -->
+  <div style="text-align: right; margin-bottom: 30px;">
+    <select id="ratingSort" style="padding: 8px 12px; font-size: 14px;">
+      <option value="high">⭐ 높은 순</option>
+      <option value="low">⭐ 낮은 순</option>
+    </select>
+  </div>
+
+  <hr>
+
+  <div class="movie-list" id="movieList">
+    <div class="movie-item">
+      <a href="movie1.html">
+        <img src="images/madmax1.png" alt="매드맥스포스터1">
+        <p>매드맥스:분노의도로</p>
+      </a>
+    </div>
+
+    <div class="movie-item">
+      <a href="movie2.html">
+        <img src="images/madmax2.png" alt="매드맥스포스터2">
+        <p>퓨리오사:매드맥스 사가</p>
+      </a>
+    </div>
+
+    <div class="movie-item">
+      <a href="movie3.html">
+        <img src="images/afteryang.png" alt="애프터양포스터">
+        <p>애프터양</p>
+      </a>
+    </div>
+
+    <div class="movie-item">
+      <a href="movie4.html">
+        <img src="images/eea.png" alt="에에올포스터">
+        <p>에브리씽 에브리웨어 올앳원스</p>
+      </a>
+    </div>
+
+    <div class="movie-item">
+      <a href="movie5.html">
+        <img src="images/matrix1.png" alt="매트릭스포스터">
+        <p>매트릭스</p>
+      </a>
+    </div>
+
+    <div class="movie-item">
+      <a href="movie6.html">
+        <img src="images/matrix2.png" alt="매트릭스2포스터">
+        <p>매트릭스2</p>
+      </a>
+    </div>
+
+    <div class="movie-item">
+      <a href="movie7.html">
+        <img src="images/chimera.jpg" alt="키메라포스터">
+        <p>키메라</p>
+      </a>
+    </div>
+
+    <div class="movie-item">
+      <a href="movie8.html">
+        <img src="images/nope.png" alt="놉포스터">
+        <p>놉</p>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function searchMovies() {
+      const input = document.getElementById("search").value.trim().toLowerCase();
+      const movies = document.querySelectorAll(".movie-item");
+  
+      movies.forEach(item => {
+        const title = item.querySelector("p").textContent.toLowerCase();
+        if (title.includes(input) || input === "") {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    }
+  </script>
+  
+</body>
+</html>
