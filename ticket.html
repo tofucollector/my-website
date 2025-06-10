@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>나만의 티켓 만들기</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: 'Pretendard', sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+
+    input, textarea {
+      padding: 8px;
+      margin: 6px;
+      font-size: 14px;
+      width: 250px;
+    }
+
+    .ticket-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .ticket {
+      background-color: white;
+      width: 280px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      border: 1px solid #ccc;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 18px;
+      letter-spacing: 2px;
+      border-bottom: 1px solid #000;
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    .ticket p {
+      font-size: 13px;
+      margin: 4px 0;
+    }
+
+    .barcode {
+      margin-top: 15px;
+      font-size: 10px;
+      color: #777;
+    }
+
+    #poster-preview {
+      max-width: 280px;
+      max-height: 420px;
+      border-radius: 12px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎟️ 나만의 영화 티켓 만들기</h1>
+
+  <div>
+    <input type="text" id="title" placeholder="영화 제목"><br>
+    <input type="text" id="subtitle" placeholder="소제목"><br>
+    <input type="text" id="info" placeholder="상영 정보 (예: 디지털 / 12세이상관람가)"><br>
+    <input type="text" id="location" placeholder="지점 / 상영관"><br>
+    <input type="text" id="date" placeholder="날짜 (예: 2025-06-10)"><br>
+    <input type="file" id="poster" accept="image/*"><br>
+    <button onclick="generateTicket()">티켓 만들기</button>
+  </div>
+
+  <div class="ticket-container">
+    <!-- 앞면: 사용자 이미지 -->
+    <div id="front" class="ticket" style="display: none;">
+      <img id="poster-preview" src="#" alt="포스터 미리보기">
+    </div>
+
+    <!-- 뒷면: 입력된 내용 -->
+    <div id="back" class="ticket" style="display: none;">
+      <div class="logo">ALL TIME FAVORITE MOVIE<br><span style="font-size:12px; font-weight:normal;">LIFE THEATER</span></div>
+      <h2 id="t_title"></h2>
+      <div class="subtitle" id="t_subtitle"></div>
+      <p id="t_info"></p>
+      <p id="t_location"></p>
+      <p id="t_date"></p>
+      <div class="barcode">
+        상영관 입장은 별도의 지류티켓으로 입장 가능합니다<br>
+        <img src="images/barcode.jpg" alt="바코드" style="width: 80px; margin-top: 5px;"><br>
+        www.movie.co.kr
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function generateTicket() {
+      document.getElementById("t_title").textContent = document.getElementById("title").value || "";
+      document.getElementById("t_subtitle").textContent = document.getElementById("subtitle").value || "";
+      document.getElementById("t_info").textContent = document.getElementById("info").value || "";
+      document.getElementById("t_location").textContent = document.getElementById("location").value || "";
+      document.getElementById("t_date").textContent = document.getElementById("date").value || "";
+  
+      const posterInput = document.getElementById("poster");
+      const preview = document.getElementById("poster-preview");
+      const file = posterInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+          document.getElementById("front").style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      }
+  
+      document.getElementById("back").style.display = "block";
+    }
+  </script>  
+  <div class="back">
+    <a href="index.html" style="text-decoration: none; color: #333;">← 메인 페이지로 돌아가기</a>
+  </div>
+
+</body>
+</html>

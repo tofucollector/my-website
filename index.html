@@ -68,10 +68,11 @@
 </head>
 
 <body>
-  <h1 style="text-align: center; color: #333;">채원이의 영화관🎬</h1>
+  <h1 style="text-align: center; color: #333;">나만의 영화관🎬</h1>
   <nav style="text-align: center; margin-bottom: 40px;">
     <a href="index.html" style="margin: 0 10px; padding: 10px 20px; background-color: #e4d0e2; border-radius: 20px; font-weight: bold; color: black; text-decoration: none;">🎞 전체 영화</a>
     <a href="monthly.html" style="margin: 0 10px; padding: 10px 20px; background-color: #f6cde3; border-radius: 20px; font-weight: bold; color: black; text-decoration: none;">🌟 이달의 추천 영화</a>
+    <a href="ticket.html" style="margin: 0 10px; padding: 10px 20px; background-color: #f6cdd3; border-radius: 20px; font-weight: bold; color: black; text-decoration: none;">🎟 나만의 티켓 만들기</a>
   </nav>
 
   <!-- 검색창 -->
@@ -98,56 +99,56 @@
   <hr>
 
   <div class="movie-list" id="movieList">
-    <div class="movie-item">
+    <div class="movie-item" data-rating="5">
       <a href="movie1.html">
         <img src="images/madmax1.png" alt="매드맥스포스터1">
         <p>매드맥스:분노의도로</p>
       </a>
     </div>
 
-    <div class="movie-item">
+    <div class="movie-item" data-rating="3.5">
       <a href="movie2.html">
         <img src="images/madmax2.png" alt="매드맥스포스터2">
         <p>퓨리오사:매드맥스 사가</p>
       </a>
     </div>
 
-    <div class="movie-item">
+    <div class="movie-item" data-rating="4">
       <a href="movie3.html">
         <img src="images/afteryang.png" alt="애프터양포스터">
         <p>애프터양</p>
       </a>
     </div>
 
-    <div class="movie-item">
+    <div class="movie-item" data-rating="5">
       <a href="movie4.html">
         <img src="images/eea.png" alt="에에올포스터">
         <p>에브리씽 에브리웨어 올앳원스</p>
       </a>
     </div>
 
-    <div class="movie-item">
+    <div class="movie-item" data-rating="4.5">
       <a href="movie5.html">
         <img src="images/matrix1.png" alt="매트릭스포스터">
         <p>매트릭스</p>
       </a>
     </div>
 
-    <div class="movie-item">
+    <div class="movie-item" data-rating="3">
       <a href="movie6.html">
         <img src="images/matrix2.png" alt="매트릭스2포스터">
         <p>매트릭스2</p>
       </a>
     </div>
 
-    <div class="movie-item">
+    <div class="movie-item" data-rating="4">
       <a href="movie7.html">
         <img src="images/chimera.jpg" alt="키메라포스터">
         <p>키메라</p>
       </a>
     </div>
 
-    <div class="movie-item">
+    <div class="movie-item" data-rating="4.5">
       <a href="movie8.html">
         <img src="images/nope.png" alt="놉포스터">
         <p>놉</p>
@@ -169,6 +170,23 @@
         }
       });
     }
+
+  </script>
+  
+  <script>
+    document.getElementById("ratingSort").addEventListener("change", function () {
+      const order = this.value; // high or low
+      const container = document.getElementById("movieList");
+      const items = Array.from(container.querySelectorAll(".movie-item"));
+  
+      items.sort((a, b) => {
+        const ratingA = parseFloat(a.dataset.rating);
+        const ratingB = parseFloat(b.dataset.rating);
+        return order === "high" ? ratingB - ratingA : ratingA - ratingB;
+      });
+  
+      items.forEach(item => container.appendChild(item));
+    });
   </script>
   
 </body>
